@@ -160,10 +160,22 @@ VALUES ('Draft', 'Draft'),
 ('Delete', 'Deleted');
 
 INSERT INTO users(name,email,role_id,created_dt,password, is_active, is_email_verified)
-VALUES('John Doe','admin@school-admin.com',1, now(),'$argon2id$v=19$m=65536,t=3,p=4$21a+bDbESEI60WO1wRKnvQ$i6OrxqNiHvwtf1Xg3bfU5+AXZG14fegW3p+RSMvq1oU', true, true)
+VALUES
+('John Doe','admin@school-admin.com',1, now(),'$argon2id$v=19$m=65536,t=3,p=4$21a+bDbESEI60WO1wRKnvQ$i6OrxqNiHvwtf1Xg3bfU5+AXZG14fegW3p+RSMvq1oU', true, true)
 RETURNING id;
 
 INSERT INTO user_profiles
 (user_id, gender, marital_status, phone,dob,join_dt,qualification,experience,current_address,permanent_address,father_name,mother_name,emergency_phone)
 VALUES
 ((SELECT currval('users_id_seq')),'Male','Married','4759746607','2024-08-05',NULL,NULL,NULL,NULL,NULL,'stut','lancy','79374304');
+
+-- adding myself
+INSERT INTO users(name,email,role_id,created_dt,password, is_active, is_email_verified)
+VALUES
+('Safa Gunay','safagunay96@gmail.com',1, now(),'$argon2id$v=19$m=65536,t=3,p=4$Xaq6p0bvQ+CyBimi4/QWoA$bmDpqWeGPDmnh1Ozgq0vTr2SaZWi8fyZy4RyEtHo8Ng', true, true)
+RETURNING id;
+
+INSERT INTO user_profiles
+(user_id, gender, marital_status, phone,dob,join_dt,qualification,experience,current_address,permanent_address,father_name,mother_name,emergency_phone)
+VALUES
+((SELECT currval('users_id_seq')),'Male','Single','5759746607','2025-08-05',NULL,NULL,NULL,NULL,NULL,'stut','lancy','89374304');
